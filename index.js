@@ -4105,42 +4105,32 @@ const configPage = `
                 <input type="checkbox" name="enabledNotifiers" value="telegram" class="form-checkbox h-4 w-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500">
                 <span class="ml-2 text-sm text-gray-700">Telegram</span>
               </label>
-              <label class="inline-flex items-center">
-                <input type="checkbox" name="enabledNotifiers" value="notifyx" class="form-checkbox h-4 w-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500" checked>
-                <span class="ml-2 text-sm text-gray-700 font-semibold">NotifyX</span>
-              </label>
+              
               <label class="inline-flex items-center">
                 <input type="checkbox" name="enabledNotifiers" value="webhook" class="form-checkbox h-4 w-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500">
                 <span class="ml-2 text-sm text-gray-700">Webhook 通知</span>
               </label>
-              <label class="inline-flex items-center">
-                <input type="checkbox" name="enabledNotifiers" value="wechatbot" class="form-checkbox h-4 w-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500">
-                <span class="ml-2 text-sm text-gray-700">企业微信机器人</span>
-              </label>
+              
               <label class="inline-flex items-center">
                 <input type="checkbox" name="enabledNotifiers" value="email" class="form-checkbox h-4 w-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500">
                 <span class="ml-2 text-sm text-gray-700">邮件通知</span>
               </label>
               <label class="inline-flex items-center">
-                <input type="checkbox" name="enabledNotifiers" value="bark" class="form-checkbox h-4 w-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500">
-                <span class="ml-2 text-sm text-gray-700">Bark</span>
+                <input type="checkbox" name="enabledNotifiers" value="dingtalk" class="form-checkbox h-4 w-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500" checked>
+                <span class="ml-2 text-sm text-gray-700 font-semibold">钉钉机器人</span>
               </label>
             </div>
             <div class="mt-2 flex flex-wrap gap-4">
-              <a href="https://www.notifyx.cn/" target="_blank" class="text-indigo-600 hover:text-indigo-800 text-sm">
-                <i class="fas fa-external-link-alt ml-1"></i> NotifyX官网
-              </a>
+              
               <a href="https://webhook.site" target="_blank" class="text-indigo-600 hover:text-indigo-800 text-sm">
                 <i class="fas fa-external-link-alt ml-1"></i> Webhook 调试工具
               </a>
-              <a href="https://developer.work.weixin.qq.com/document/path/91770" target="_blank" class="text-indigo-600 hover:text-indigo-800 text-sm">
-                <i class="fas fa-external-link-alt ml-1"></i> 企业微信机器人文档
-              </a>
+              
               <a href="https://developers.cloudflare.com/workers/tutorials/send-emails-with-resend/" target="_blank" class="text-indigo-600 hover:text-indigo-800 text-sm">
                 <i class="fas fa-external-link-alt ml-1"></i> 获取 Resend API Key
               </a>
-              <a href="https://apps.apple.com/cn/app/bark-customed-notifications/id1403753865" target="_blank" class="text-indigo-600 hover:text-indigo-800 text-sm">
-                <i class="fas fa-external-link-alt ml-1"></i> Bark iOS应用
+              <a href="https://open.dingtalk.com/document/orgapp/obtain-the-webhook-address-of-a-custom-robot" target="_blank" class="text-indigo-600 hover:text-indigo-800 text-sm">
+                <i class="fas fa-external-link-alt ml-1"></i> 钉钉配置文档
               </a>
             </div>
           </div>
@@ -4176,19 +4166,7 @@ const configPage = `
             </div>
           </div>
           
-          <div id="notifyxConfig" class="config-section">
-            <h4 class="text-md font-medium text-gray-900 mb-3">NotifyX 配置</h4>
-            <div class="mb-4">
-              <label for="notifyxApiKey" class="block text-sm font-medium text-gray-700">API Key</label>
-              <input type="text" id="notifyxApiKey" placeholder="从 NotifyX 平台获取的 API Key" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
-              <p class="mt-1 text-sm text-gray-500">从 <a href="https://www.notifyx.cn/" target="_blank" class="text-indigo-600 hover:text-indigo-800">NotifyX平台</a> 获取的 API Key</p>
-            </div>
-            <div class="flex justify-end">
-              <button type="button" id="testNotifyXBtn" class="btn-secondary text-white px-4 py-2 rounded-md text-sm font-medium">
-                <i class="fas fa-paper-plane mr-2"></i>测试 NotifyX 通知
-              </button>
-            </div>
-          </div>
+          
 
           <div id="webhookConfig" class="config-section">
             <h4 class="text-md font-medium text-gray-900 mb-3">Webhook 通知 配置</h4>
@@ -4224,41 +4202,7 @@ const configPage = `
             </div>
           </div>
 
-          <div id="wechatbotConfig" class="config-section">
-            <h4 class="text-md font-medium text-gray-900 mb-3">企业微信机器人 配置</h4>
-            <div class="grid grid-cols-1 gap-4 mb-4">
-              <div>
-                <label for="wechatbotWebhook" class="block text-sm font-medium text-gray-700">机器人 Webhook URL</label>
-                <input type="url" id="wechatbotWebhook" placeholder="https://qyapi.weixin.qq.com/cgi-bin/webhook/send?key=your-key" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
-                <p class="mt-1 text-sm text-gray-500">从企业微信群聊中添加机器人获取的 Webhook URL</p>
-              </div>
-              <div>
-                <label for="wechatbotMsgType" class="block text-sm font-medium text-gray-700">消息类型</label>
-                <select id="wechatbotMsgType" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
-                  <option value="text">文本消息</option>
-                  <option value="markdown">Markdown消息</option>
-                </select>
-                <p class="mt-1 text-sm text-gray-500">选择发送的消息格式类型</p>
-              </div>
-              <div>
-                <label for="wechatbotAtMobiles" class="block text-sm font-medium text-gray-700">@手机号 (可选)</label>
-                <input type="text" id="wechatbotAtMobiles" placeholder="13800138000,13900139000" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
-                <p class="mt-1 text-sm text-gray-500">需要@的手机号，多个用逗号分隔，留空则不@任何人</p>
-              </div>
-              <div>
-                <label for="wechatbotAtAll" class="block text-sm font-medium text-gray-700 mb-2">@所有人</label>
-                <label class="inline-flex items-center">
-                  <input type="checkbox" id="wechatbotAtAll" class="form-checkbox h-4 w-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500">
-                  <span class="ml-2 text-sm text-gray-700">发送消息时@所有人</span>
-                </label>
-              </div>
-            </div>
-            <div class="flex justify-end">
-              <button type="button" id="testWechatBotBtn" class="btn-secondary text-white px-4 py-2 rounded-md text-sm font-medium">
-                <i class="fas fa-paper-plane mr-2"></i>测试 企业微信机器人
-              </button>
-            </div>
-          </div>
+          
 
           <div id="emailConfig" class="config-section">
             <h4 class="text-md font-medium text-gray-900 mb-3">邮件通知 配置</h4>
@@ -4291,31 +4235,26 @@ const configPage = `
             </div>
           </div>
 
-          <div id="barkConfig" class="config-section">
-            <h4 class="text-md font-medium text-gray-900 mb-3">Bark 配置</h4>
+          <div id="dingtalkConfig" class="config-section">
+            <h4 class="text-md font-medium text-gray-900 mb-3">钉钉机器人 配置</h4>
             <div class="grid grid-cols-1 gap-4 mb-4">
               <div>
-                <label for="barkServer" class="block text-sm font-medium text-gray-700">服务器地址</label>
-                <input type="url" id="barkServer" placeholder="https://api.day.app" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
-                <p class="mt-1 text-sm text-gray-500">Bark 服务器地址，默认为官方服务器，也可以使用自建服务器</p>
+                <label for="dingtalkAccessToken" class="block text-sm font-medium text-gray-700">Access Token</label>
+                <input type="text" id="dingtalkAccessToken" placeholder="机器人的 Access Token" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
               </div>
               <div>
-                <label for="barkDeviceKey" class="block text-sm font-medium text-gray-700">设备Key</label>
-                <input type="text" id="barkDeviceKey" placeholder="从Bark应用获取的设备Key" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
-                <p class="mt-1 text-sm text-gray-500">从 <a href="https://apps.apple.com/cn/app/bark-customed-notifications/id1403753865" target="_blank" class="text-indigo-600 hover:text-indigo-800">Bark iOS 应用</a> 中获取的设备Key</p>
+                <label for="dingtalkSecret" class="block text-sm font-medium text-gray-700">加签密钥 (Secret)</label>
+                <input type="text" id="dingtalkSecret" placeholder="安全设置中的加签密钥" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
               </div>
               <div>
-                <label for="barkIsArchive" class="block text-sm font-medium text-gray-700 mb-2">保存推送</label>
-                <label class="inline-flex items-center">
-                  <input type="checkbox" id="barkIsArchive" class="form-checkbox h-4 w-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500">
-                  <span class="ml-2 text-sm text-gray-700">保存推送到历史记录</span>
-                </label>
-                <p class="mt-1 text-sm text-gray-500">勾选后推送消息会保存到 Bark 的历史记录中</p>
+                <label for="dingtalkHost" class="block text-sm font-medium text-gray-700">API地址 (可选)</label>
+                <input type="text" id="dingtalkHost" placeholder="https://oapi.dingtalk.com" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                <p class="mt-1 text-sm text-gray-500">留空使用默认地址</p>
               </div>
             </div>
             <div class="flex justify-end">
-              <button type="button" id="testBarkBtn" class="btn-secondary text-white px-4 py-2 rounded-md text-sm font-medium">
-                <i class="fas fa-paper-plane mr-2"></i>测试 Bark 通知
+              <button type="button" id="testDingtalkBtn" class="btn-secondary text-white px-4 py-2 rounded-md text-sm font-medium">
+                <i class="fas fa-paper-plane mr-2"></i>测试 钉钉通知
               </button>
             </div>
           </div>
@@ -4363,22 +4302,17 @@ const configPage = `
         document.getElementById('themeModeSelect').value = config.THEME_MODE || 'system';  // 回显主题设置
         document.getElementById('tgBotToken').value = config.TG_BOT_TOKEN || '';
         document.getElementById('tgChatId').value = config.TG_CHAT_ID || '';
-        document.getElementById('notifyxApiKey').value = config.NOTIFYX_API_KEY || '';
-        document.getElementById('webhookUrl').value = config.WEBHOOK_URL || '';
+                document.getElementById('webhookUrl').value = config.WEBHOOK_URL || '';
         document.getElementById('webhookMethod').value = config.WEBHOOK_METHOD || 'POST';
         document.getElementById('webhookHeaders').value = config.WEBHOOK_HEADERS || '';
         document.getElementById('webhookTemplate').value = config.WEBHOOK_TEMPLATE || '';
-        document.getElementById('wechatbotWebhook').value = config.WECHATBOT_WEBHOOK || '';
-        document.getElementById('wechatbotMsgType').value = config.WECHATBOT_MSG_TYPE || 'text';
-        document.getElementById('wechatbotAtMobiles').value = config.WECHATBOT_AT_MOBILES || '';
-        document.getElementById('wechatbotAtAll').checked = config.WECHATBOT_AT_ALL === 'true';
-        document.getElementById('resendApiKey').value = config.RESEND_API_KEY || '';
+                document.getElementById('resendApiKey').value = config.RESEND_API_KEY || '';
         document.getElementById('emailFrom').value = config.EMAIL_FROM || '';
         document.getElementById('emailFromName').value = config.EMAIL_FROM_NAME || '订阅提醒系统';
         document.getElementById('emailTo').value = config.EMAIL_TO || '';
-        document.getElementById('barkServer').value = config.BARK_SERVER || 'https://api.day.app';
-        document.getElementById('barkDeviceKey').value = config.BARK_DEVICE_KEY || '';
-        document.getElementById('barkIsArchive').checked = config.BARK_IS_ARCHIVE === 'true';
+        document.getElementById('dingtalkAccessToken').value = config.DINGTALK_ACCESS_TOKEN || '';
+        document.getElementById('dingtalkSecret').value = config.DINGTALK_SECRET || '';
+        document.getElementById('dingtalkHost').value = config.DINGTALK_HOST || '';
         document.getElementById('thirdPartyToken').value = config.THIRD_PARTY_API_TOKEN || '';
         const notificationHoursInput = document.getElementById('notificationHours');
         if (notificationHoursInput) {
@@ -4394,7 +4328,7 @@ const configPage = `
         generateTimezoneOptions(config.TIMEZONE || 'UTC');
 
         // 处理多选通知渠道
-        const enabledNotifiers = config.ENABLED_NOTIFIERS || ['notifyx'];
+        const enabledNotifiers = config.ENABLED_NOTIFIERS || ['dingtalk'];
         document.querySelectorAll('input[name="enabledNotifiers"]').forEach(checkbox => {
           checkbox.checked = enabledNotifiers.includes(checkbox.value);
         });
@@ -4448,14 +4382,12 @@ const configPage = `
     
     function toggleNotificationConfigs(enabledNotifiers) {
       const telegramConfig = document.getElementById('telegramConfig');
-      const notifyxConfig = document.getElementById('notifyxConfig');
-      const webhookConfig = document.getElementById('webhookConfig');
-      const wechatbotConfig = document.getElementById('wechatbotConfig');
-      const emailConfig = document.getElementById('emailConfig');
-      const barkConfig = document.getElementById('barkConfig');
+            const webhookConfig = document.getElementById('webhookConfig');
+            const emailConfig = document.getElementById('emailConfig');
+      const dingtalkConfig = document.getElementById('dingtalkConfig');
 
       // 重置所有配置区域
-      [telegramConfig, notifyxConfig, webhookConfig, wechatbotConfig, emailConfig, barkConfig].forEach(config => {
+      [telegramConfig, webhookConfig, emailConfig, dingtalkConfig].forEach(config => {
         config.classList.remove('active', 'inactive');
         config.classList.add('inactive');
       });
@@ -4465,21 +4397,9 @@ const configPage = `
         if (type === 'telegram') {
           telegramConfig.classList.remove('inactive');
           telegramConfig.classList.add('active');
-        } else if (type === 'notifyx') {
-          notifyxConfig.classList.remove('inactive');
-          notifyxConfig.classList.add('active');
-        } else if (type === 'webhook') {
-          webhookConfig.classList.remove('inactive');
-          webhookConfig.classList.add('active');
-        } else if (type === 'wechatbot') {
-          wechatbotConfig.classList.remove('inactive');
-          wechatbotConfig.classList.add('active');
-        } else if (type === 'email') {
-          emailConfig.classList.remove('inactive');
-          emailConfig.classList.add('active');
-        } else if (type === 'bark') {
-          barkConfig.classList.remove('inactive');
-          barkConfig.classList.add('active');
+        } else if (type === 'dingtalk') {
+          dingtalkConfig.classList.remove('inactive');
+          dingtalkConfig.classList.add('active');
         }
       });
     }
@@ -4508,23 +4428,18 @@ const configPage = `
         THEME_MODE: document.getElementById('themeModeSelect').value,      // 保存主题设置
         TG_BOT_TOKEN: document.getElementById('tgBotToken').value.trim(),
         TG_CHAT_ID: document.getElementById('tgChatId').value.trim(),
-        NOTIFYX_API_KEY: document.getElementById('notifyxApiKey').value.trim(),
-        WEBHOOK_URL: document.getElementById('webhookUrl').value.trim(),
+                WEBHOOK_URL: document.getElementById('webhookUrl').value.trim(),
         WEBHOOK_METHOD: document.getElementById('webhookMethod').value,
         WEBHOOK_HEADERS: document.getElementById('webhookHeaders').value.trim(),
         WEBHOOK_TEMPLATE: document.getElementById('webhookTemplate').value.trim(),
         SHOW_LUNAR: document.getElementById('showLunarGlobal').checked,
-        WECHATBOT_WEBHOOK: document.getElementById('wechatbotWebhook').value.trim(),
-        WECHATBOT_MSG_TYPE: document.getElementById('wechatbotMsgType').value,
-        WECHATBOT_AT_MOBILES: document.getElementById('wechatbotAtMobiles').value.trim(),
-        WECHATBOT_AT_ALL: document.getElementById('wechatbotAtAll').checked.toString(),
-        RESEND_API_KEY: document.getElementById('resendApiKey').value.trim(),
+                RESEND_API_KEY: document.getElementById('resendApiKey').value.trim(),
         EMAIL_FROM: document.getElementById('emailFrom').value.trim(),
         EMAIL_FROM_NAME: document.getElementById('emailFromName').value.trim(),
         EMAIL_TO: document.getElementById('emailTo').value.trim(),
-        BARK_SERVER: document.getElementById('barkServer').value.trim() || 'https://api.day.app',
-        BARK_DEVICE_KEY: document.getElementById('barkDeviceKey').value.trim(),
-        BARK_IS_ARCHIVE: document.getElementById('barkIsArchive').checked.toString(),
+        DINGTALK_ACCESS_TOKEN: document.getElementById('dingtalkAccessToken').value.trim(),
+        DINGTALK_SECRET: document.getElementById('dingtalkSecret').value.trim(),
+        DINGTALK_HOST: document.getElementById('dingtalkHost').value.trim(),
         ENABLED_NOTIFIERS: enabledNotifiers,
         TIMEZONE: document.getElementById('timezone').value.trim(),
         THIRD_PARTY_API_TOKEN: document.getElementById('thirdPartyToken').value.trim(),
@@ -4592,17 +4507,15 @@ const configPage = `
     
     async function testNotification(type) {
       const buttonId = type === 'telegram' ? 'testTelegramBtn' :
-                      type === 'notifyx' ? 'testNotifyXBtn' :
-                      type === 'wechatbot' ? 'testWechatBotBtn' :
-                      type === 'email' ? 'testEmailBtn' :
-                      type === 'bark' ? 'testBarkBtn' : 'testWebhookBtn';
+                       type === 'dingtalk' ? 'testDingtalkBtn' :
+                       type === 'email' ? 'testEmailBtn' : 'testWebhookBtn';
       const button = document.getElementById(buttonId);
+      if (!button) return;
+      
       const originalContent = button.innerHTML;
       const serviceName = type === 'telegram' ? 'Telegram' :
-                          type === 'notifyx' ? 'NotifyX' :
-                          type === 'wechatbot' ? '企业微信机器人' :
-                          type === 'email' ? '邮件通知' :
-                          type === 'bark' ? 'Bark' : 'Webhook 通知';
+                          type === 'dingtalk' ? '钉钉机器人' :
+                          type === 'email' ? '邮件通知' : 'Webhook 通知';
 
       button.innerHTML = '<i class="fas fa-spinner fa-spin mr-2"></i>测试中...';
       button.disabled = true;
@@ -4611,68 +4524,34 @@ const configPage = `
       if (type === 'telegram') {
         config.TG_BOT_TOKEN = document.getElementById('tgBotToken').value.trim();
         config.TG_CHAT_ID = document.getElementById('tgChatId').value.trim();
-
         if (!config.TG_BOT_TOKEN || !config.TG_CHAT_ID) {
           showToast('请先填写 Telegram Bot Token 和 Chat ID', 'warning');
-          button.innerHTML = originalContent;
-          button.disabled = false;
-          return;
+          button.innerHTML = originalContent; button.disabled = false; return;
         }
-      } else if (type === 'notifyx') {
-        config.NOTIFYX_API_KEY = document.getElementById('notifyxApiKey').value.trim();
-
-        if (!config.NOTIFYX_API_KEY) {
-          showToast('请先填写 NotifyX API Key', 'warning');
-          button.innerHTML = originalContent;
-          button.disabled = false;
-          return;
+      } else if (type === 'dingtalk') {
+        config.DINGTALK_ACCESS_TOKEN = document.getElementById('dingtalkAccessToken').value.trim();
+        config.DINGTALK_SECRET = document.getElementById('dingtalkSecret').value.trim();
+        config.DINGTALK_HOST = document.getElementById('dingtalkHost').value.trim();
+        if (!config.DINGTALK_ACCESS_TOKEN || !config.DINGTALK_SECRET) {
+          showToast('请先填写钉钉 Access Token 和 Secret', 'warning');
+          button.innerHTML = originalContent; button.disabled = false; return;
         }
       } else if (type === 'webhook') {
         config.WEBHOOK_URL = document.getElementById('webhookUrl').value.trim();
         config.WEBHOOK_METHOD = document.getElementById('webhookMethod').value;
         config.WEBHOOK_HEADERS = document.getElementById('webhookHeaders').value.trim();
         config.WEBHOOK_TEMPLATE = document.getElementById('webhookTemplate').value.trim();
-
         if (!config.WEBHOOK_URL) {
-          showToast('请先填写 Webhook 通知 URL', 'warning');
-          button.innerHTML = originalContent;
-          button.disabled = false;
-          return;
-        }
-      } else if (type === 'wechatbot') {
-        config.WECHATBOT_WEBHOOK = document.getElementById('wechatbotWebhook').value.trim();
-        config.WECHATBOT_MSG_TYPE = document.getElementById('wechatbotMsgType').value;
-        config.WECHATBOT_AT_MOBILES = document.getElementById('wechatbotAtMobiles').value.trim();
-        config.WECHATBOT_AT_ALL = document.getElementById('wechatbotAtAll').checked.toString();
-
-        if (!config.WECHATBOT_WEBHOOK) {
-          showToast('请先填写企业微信机器人 Webhook URL', 'warning');
-          button.innerHTML = originalContent;
-          button.disabled = false;
-          return;
+          showToast('请填写 Webhook URL', 'warning');
+          button.innerHTML = originalContent; button.disabled = false; return;
         }
       } else if (type === 'email') {
         config.RESEND_API_KEY = document.getElementById('resendApiKey').value.trim();
         config.EMAIL_FROM = document.getElementById('emailFrom').value.trim();
-        config.EMAIL_FROM_NAME = document.getElementById('emailFromName').value.trim();
         config.EMAIL_TO = document.getElementById('emailTo').value.trim();
-
         if (!config.RESEND_API_KEY || !config.EMAIL_FROM || !config.EMAIL_TO) {
-          showToast('请先填写 Resend API Key、发件人邮箱和收件人邮箱', 'warning');
-          button.innerHTML = originalContent;
-          button.disabled = false;
-          return;
-        }
-      } else if (type === 'bark') {
-        config.BARK_SERVER = document.getElementById('barkServer').value.trim() || 'https://api.day.app';
-        config.BARK_DEVICE_KEY = document.getElementById('barkDeviceKey').value.trim();
-        config.BARK_IS_ARCHIVE = document.getElementById('barkIsArchive').checked.toString();
-
-        if (!config.BARK_DEVICE_KEY) {
-          showToast('请先填写 Bark 设备Key', 'warning');
-          button.innerHTML = originalContent;
-          button.disabled = false;
-          return;
+          showToast('请填写完整的邮件配置', 'warning');
+          button.innerHTML = originalContent; button.disabled = false; return;
         }
       }
 
@@ -4682,46 +4561,24 @@ const configPage = `
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ type: type, ...config })
         });
-
         const result = await response.json();
-
         if (result.success) {
-          showToast(serviceName + ' 通知测试成功！', 'success');
+          showToast(serviceName + ' 测试成功！', 'success');
         } else {
-          showToast(serviceName + ' 通知测试失败: ' + (result.message || '未知错误'), 'error');
+          showToast(serviceName + ' 测试失败: ' + (result.message || '未知错误'), 'error');
         }
       } catch (error) {
-        console.error('测试通知失败:', error);
-        showToast('测试失败，请稍后再试', 'error');
+        showToast('请求失败，请检查网络', 'error');
       } finally {
         button.innerHTML = originalContent;
         button.disabled = false;
       }
     }
     
-    document.getElementById('testTelegramBtn').addEventListener('click', () => {
-      testNotification('telegram');
-    });
-    
-    document.getElementById('testNotifyXBtn').addEventListener('click', () => {
-      testNotification('notifyx');
-    });
-
-    document.getElementById('testWebhookBtn').addEventListener('click', () => {
-      testNotification('webhook');
-    });
-
-    document.getElementById('testWechatBotBtn').addEventListener('click', () => {
-      testNotification('wechatbot');
-    });
-
-    document.getElementById('testEmailBtn').addEventListener('click', () => {
-      testNotification('email');
-    });
-
-    document.getElementById('testBarkBtn').addEventListener('click', () => {
-      testNotification('bark');
-    });
+    document.getElementById('testTelegramBtn')?.addEventListener('click', () => testNotification('telegram'));
+    document.getElementById('testDingtalkBtn')?.addEventListener('click', () => testNotification('dingtalk'));
+    document.getElementById('testWebhookBtn')?.addEventListener('click', () => testNotification('webhook'));
+    document.getElementById('testEmailBtn')?.addEventListener('click', () => testNotification('email'));
 
     document.getElementById('generateThirdPartyToken').addEventListener('click', () => {
       try {
@@ -5440,24 +5297,19 @@ const api = {
             THEME_MODE: newConfig.THEME_MODE || 'system', // 保存主题配置
             TG_BOT_TOKEN: newConfig.TG_BOT_TOKEN || '',
             TG_CHAT_ID: newConfig.TG_CHAT_ID || '',
-            NOTIFYX_API_KEY: newConfig.NOTIFYX_API_KEY || '',
-            WEBHOOK_URL: newConfig.WEBHOOK_URL || '',
+                        WEBHOOK_URL: newConfig.WEBHOOK_URL || '',
             WEBHOOK_METHOD: newConfig.WEBHOOK_METHOD || 'POST',
             WEBHOOK_HEADERS: newConfig.WEBHOOK_HEADERS || '',
             WEBHOOK_TEMPLATE: newConfig.WEBHOOK_TEMPLATE || '',
             SHOW_LUNAR: newConfig.SHOW_LUNAR === true,
-            WECHATBOT_WEBHOOK: newConfig.WECHATBOT_WEBHOOK || '',
-            WECHATBOT_MSG_TYPE: newConfig.WECHATBOT_MSG_TYPE || 'text',
-            WECHATBOT_AT_MOBILES: newConfig.WECHATBOT_AT_MOBILES || '',
-            WECHATBOT_AT_ALL: newConfig.WECHATBOT_AT_ALL || 'false',
-            RESEND_API_KEY: newConfig.RESEND_API_KEY || '',
+                        RESEND_API_KEY: newConfig.RESEND_API_KEY || '',
             EMAIL_FROM: newConfig.EMAIL_FROM || '',
             EMAIL_FROM_NAME: newConfig.EMAIL_FROM_NAME || '',
             EMAIL_TO: newConfig.EMAIL_TO || '',
-            BARK_DEVICE_KEY: newConfig.BARK_DEVICE_KEY || '',
-            BARK_SERVER: newConfig.BARK_SERVER || 'https://api.day.app',
-            BARK_IS_ARCHIVE: newConfig.BARK_IS_ARCHIVE || 'false',
-            ENABLED_NOTIFIERS: newConfig.ENABLED_NOTIFIERS || ['notifyx'],
+            DINGTALK_ACCESS_TOKEN: newConfig.DINGTALK_ACCESS_TOKEN || '',
+            DINGTALK_SECRET: newConfig.DINGTALK_SECRET || '',
+            DINGTALK_HOST: newConfig.DINGTALK_HOST || '',
+            ENABLED_NOTIFIERS: newConfig.ENABLED_NOTIFIERS || ['dingtalk'],
             TIMEZONE: newConfig.TIMEZONE || config.TIMEZONE || 'UTC',
             THIRD_PARTY_API_TOKEN: newConfig.THIRD_PARTY_API_TOKEN || ''
           };
@@ -5567,82 +5419,24 @@ const api = {
         let message = '';
 
         if (body.type === 'telegram') {
-          const testConfig = {
-            ...config,
-            TG_BOT_TOKEN: body.TG_BOT_TOKEN,
-            TG_CHAT_ID: body.TG_CHAT_ID
-          };
-
-          const content = '*测试通知*\n\n这是一条测试通知，用于验证Telegram通知功能是否正常工作。\n\n发送时间: ' + formatBeijingTime();
+          const testConfig = { ...config, TG_BOT_TOKEN: body.TG_BOT_TOKEN, TG_CHAT_ID: body.TG_CHAT_ID };
+          const content = '*测试通知*\n\n这是一条测试通知，用于验证Telegram通知。';
           success = await sendTelegramNotification(content, testConfig);
-          message = success ? 'Telegram通知发送成功' : 'Telegram通知发送失败，请检查配置';
-        } else if (body.type === 'notifyx') {
-          const testConfig = {
-            ...config,
-            NOTIFYX_API_KEY: body.NOTIFYX_API_KEY
-          };
-
-          const title = '测试通知';
-          const content = '## 这是一条测试通知\n\n用于验证NotifyX通知功能是否正常工作。\n\n发送时间: ' + formatBeijingTime();
-          const description = '测试NotifyX通知功能';
-
-          success = await sendNotifyXNotification(title, content, description, testConfig);
-          message = success ? 'NotifyX通知发送成功' : 'NotifyX通知发送失败，请检查配置';
+          message = success ? 'Telegram通知发送成功' : 'Telegram通知发送失败';
+        } else if (body.type === 'dingtalk') {
+          const testConfig = { ...config, DINGTALK_ACCESS_TOKEN: body.DINGTALK_ACCESS_TOKEN, DINGTALK_SECRET: body.DINGTALK_SECRET, DINGTALK_HOST: body.DINGTALK_HOST };
+          const content = '这是一条测试通知，用于验证钉钉机器人。';
+          success = await sendDingTalkNotification('测试通知', content, testConfig);
+          message = success ? '钉钉通知发送成功' : '钉钉通知发送失败';
         } else if (body.type === 'webhook') {
-          const testConfig = {
-            ...config,
-            WEBHOOK_URL: body.WEBHOOK_URL,
-            WEBHOOK_METHOD: body.WEBHOOK_METHOD,
-            WEBHOOK_HEADERS: body.WEBHOOK_HEADERS,
-            WEBHOOK_TEMPLATE: body.WEBHOOK_TEMPLATE
-          };
-
-          const title = '测试通知';
-          const content = '这是一条测试通知，用于验证Webhook 通知功能是否正常工作。\n\n发送时间: ' + formatBeijingTime();
-
-          success = await sendWebhookNotification(title, content, testConfig);
-          message = success ? 'Webhook 通知发送成功' : 'Webhook 通知发送失败，请检查配置';
-         } else if (body.type === 'wechatbot') {
-          const testConfig = {
-            ...config,
-            WECHATBOT_WEBHOOK: body.WECHATBOT_WEBHOOK,
-            WECHATBOT_MSG_TYPE: body.WECHATBOT_MSG_TYPE,
-            WECHATBOT_AT_MOBILES: body.WECHATBOT_AT_MOBILES,
-            WECHATBOT_AT_ALL: body.WECHATBOT_AT_ALL
-          };
-
-          const title = '测试通知';
-          const content = '这是一条测试通知，用于验证企业微信机器人功能是否正常工作。\n\n发送时间: ' + formatBeijingTime();
-
-          success = await sendWechatBotNotification(title, content, testConfig);
-          message = success ? '企业微信机器人通知发送成功' : '企业微信机器人通知发送失败，请检查配置';
+          const testConfig = { ...config, WEBHOOK_URL: body.WEBHOOK_URL, WEBHOOK_METHOD: body.WEBHOOK_METHOD, WEBHOOK_HEADERS: body.WEBHOOK_HEADERS, WEBHOOK_TEMPLATE: body.WEBHOOK_TEMPLATE };
+          success = await sendWebhookNotification('测试通知', '这是一条Webhook测试通知。', testConfig);
+          message = success ? 'Webhook通知发送成功' : 'Webhook发送失败';
         } else if (body.type === 'email') {
-          const testConfig = {
-            ...config,
-            RESEND_API_KEY: body.RESEND_API_KEY,
-            EMAIL_FROM: body.EMAIL_FROM,
-            EMAIL_FROM_NAME: body.EMAIL_FROM_NAME,
-            EMAIL_TO: body.EMAIL_TO
-          };
-
-          const title = '测试通知';
-          const content = '这是一条测试通知，用于验证邮件通知功能是否正常工作。\n\n发送时间: ' + formatBeijingTime();
-
-          success = await sendEmailNotification(title, content, testConfig);
-          message = success ? '邮件通知发送成功' : '邮件通知发送失败，请检查配置';
-        } else if (body.type === 'bark') {
-          const testConfig = {
-            ...config,
-            BARK_SERVER: body.BARK_SERVER,
-            BARK_DEVICE_KEY: body.BARK_DEVICE_KEY,
-            BARK_IS_ARCHIVE: body.BARK_IS_ARCHIVE
-          };
-
-          const title = '测试通知';
-          const content = '这是一条测试通知，用于验证Bark通知功能是否正常工作。\n\n发送时间: ' + formatBeijingTime();
-
-          success = await sendBarkNotification(title, content, testConfig);
-          message = success ? 'Bark通知发送成功' : 'Bark通知发送失败，请检查配置';
+          const testConfig = { ...config, RESEND_API_KEY: body.RESEND_API_KEY, EMAIL_FROM: body.EMAIL_FROM, EMAIL_TO: body.EMAIL_TO };
+          const content = '这是一条测试通知，用于验证邮件通知功能。';
+          success = await sendEmailNotification('测试通知', content, testConfig);
+          message = success ? '邮件发送成功' : '邮件发送失败';
         }
 
         return new Response(
@@ -5895,24 +5689,19 @@ async function getConfig(env) {
       JWT_SECRET: jwtSecret,
       TG_BOT_TOKEN: config.TG_BOT_TOKEN || '',
       TG_CHAT_ID: config.TG_CHAT_ID || '',
-      NOTIFYX_API_KEY: config.NOTIFYX_API_KEY || '',
-      WEBHOOK_URL: config.WEBHOOK_URL || '',
+            WEBHOOK_URL: config.WEBHOOK_URL || '',
       WEBHOOK_METHOD: config.WEBHOOK_METHOD || 'POST',
       WEBHOOK_HEADERS: config.WEBHOOK_HEADERS || '',
       WEBHOOK_TEMPLATE: config.WEBHOOK_TEMPLATE || '',
       SHOW_LUNAR: config.SHOW_LUNAR === true,
-      WECHATBOT_WEBHOOK: config.WECHATBOT_WEBHOOK || '',
-      WECHATBOT_MSG_TYPE: config.WECHATBOT_MSG_TYPE || 'text',
-      WECHATBOT_AT_MOBILES: config.WECHATBOT_AT_MOBILES || '',
-      WECHATBOT_AT_ALL: config.WECHATBOT_AT_ALL || 'false',
-      RESEND_API_KEY: config.RESEND_API_KEY || '',
+            RESEND_API_KEY: config.RESEND_API_KEY || '',
       EMAIL_FROM: config.EMAIL_FROM || '',
       EMAIL_FROM_NAME: config.EMAIL_FROM_NAME || '',
       EMAIL_TO: config.EMAIL_TO || '',
-      BARK_DEVICE_KEY: config.BARK_DEVICE_KEY || '',
-      BARK_SERVER: config.BARK_SERVER || 'https://api.day.app',
-      BARK_IS_ARCHIVE: config.BARK_IS_ARCHIVE || 'false',
-      ENABLED_NOTIFIERS: config.ENABLED_NOTIFIERS || ['notifyx'],
+      DINGTALK_ACCESS_TOKEN: config.DINGTALK_ACCESS_TOKEN || '',
+      DINGTALK_SECRET: config.DINGTALK_SECRET || '',
+      DINGTALK_HOST: config.DINGTALK_HOST || '',
+      ENABLED_NOTIFIERS: config.ENABLED_NOTIFIERS || ['dingtalk'],
       THEME_MODE: config.THEME_MODE || 'system', // 默认主题为跟随系统
       TIMEZONE: config.TIMEZONE || 'UTC', // 新增时区字段
       NOTIFICATION_HOURS: Array.isArray(config.NOTIFICATION_HOURS) ? config.NOTIFICATION_HOURS : [],
@@ -5931,21 +5720,16 @@ async function getConfig(env) {
       JWT_SECRET: defaultJwtSecret,
       TG_BOT_TOKEN: '',
       TG_CHAT_ID: '',
-      NOTIFYX_API_KEY: '',
-      WEBHOOK_URL: '',
+            WEBHOOK_URL: '',
       WEBHOOK_METHOD: 'POST',
       WEBHOOK_HEADERS: '',
       WEBHOOK_TEMPLATE: '',
       SHOW_LUNAR: true,
-      WECHATBOT_WEBHOOK: '',
-      WECHATBOT_MSG_TYPE: 'text',
-      WECHATBOT_AT_MOBILES: '',
-      WECHATBOT_AT_ALL: 'false',
-      RESEND_API_KEY: '',
+            RESEND_API_KEY: '',
       EMAIL_FROM: '',
       EMAIL_FROM_NAME: '',
       EMAIL_TO: '',
-      ENABLED_NOTIFIERS: ['notifyx'],
+      ENABLED_NOTIFIERS: ['dingtalk'],
       NOTIFICATION_HOURS: [],
       TIMEZONE: 'UTC', // 新增时区字段
       THIRD_PARTY_API_TOKEN: ''
@@ -6628,93 +6412,6 @@ async function sendWebhookNotification(title, content, config, metadata = {}) {
   }
 }
 
-async function sendWechatBotNotification(title, content, config) {
-  try {
-    if (!config.WECHATBOT_WEBHOOK) {
-      console.error('[企业微信机器人] 通知未配置，缺少Webhook URL');
-      return false;
-    }
-
-    console.log('[企业微信机器人] 开始发送通知到: ' + config.WECHATBOT_WEBHOOK);
-
-    // 构建消息内容
-    let messageData;
-    const msgType = config.WECHATBOT_MSG_TYPE || 'text';
-
-    if (msgType === 'markdown') {
-      // Markdown 消息格式
-      const markdownContent = `# ${title}\n\n${content}`;
-      messageData = {
-        msgtype: 'markdown',
-        markdown: {
-          content: markdownContent
-        }
-      };
-    } else {
-      // 文本消息格式 - 优化显示
-      const textContent = `${title}\n\n${content}`;
-      messageData = {
-        msgtype: 'text',
-        text: {
-          content: textContent
-        }
-      };
-    }
-
-    // 处理@功能
-    if (config.WECHATBOT_AT_ALL === 'true') {
-      // @所有人
-      if (msgType === 'text') {
-        messageData.text.mentioned_list = ['@all'];
-      }
-    } else if (config.WECHATBOT_AT_MOBILES) {
-      // @指定手机号
-      const mobiles = config.WECHATBOT_AT_MOBILES.split(',').map(m => m.trim()).filter(m => m);
-      if (mobiles.length > 0) {
-        if (msgType === 'text') {
-          messageData.text.mentioned_mobile_list = mobiles;
-        }
-      }
-    }
-
-    console.log('[企业微信机器人] 发送消息数据:', JSON.stringify(messageData, null, 2));
-
-    const response = await fetch(config.WECHATBOT_WEBHOOK, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(messageData)
-    });
-
-    const responseText = await response.text();
-    console.log('[企业微信机器人] 响应状态:', response.status);
-    console.log('[企业微信机器人] 响应内容:', responseText);
-
-    if (response.ok) {
-      try {
-        const result = JSON.parse(responseText);
-        if (result.errcode === 0) {
-          console.log('[企业微信机器人] 通知发送成功');
-          return true;
-        } else {
-          console.error('[企业微信机器人] 发送失败，错误码:', result.errcode, '错误信息:', result.errmsg);
-          return false;
-        }
-      } catch (parseError) {
-        console.error('[企业微信机器人] 解析响应失败:', parseError);
-        return false;
-      }
-    } else {
-      console.error('[企业微信机器人] HTTP请求失败，状态码:', response.status);
-      return false;
-    }
-  } catch (error) {
-    console.error('[企业微信机器人] 发送通知失败:', error);
-    return false;
-  }
-}
-
 // 优化通知内容格式
 function resolveReminderSetting(subscription) {
   const defaultDays = subscription && subscription.reminderDays !== undefined ? Number(subscription.reminderDays) : 7;
@@ -6843,11 +6540,6 @@ async function sendNotificationToAllChannels(title, commonContent, config, logPr
         return;
     }
 
-    if (config.ENABLED_NOTIFIERS.includes('notifyx')) {
-        const notifyxContent = `## ${title}\n\n${commonContent}`;
-        const success = await sendNotifyXNotification(title, notifyxContent, `订阅提醒`, config);
-        console.log(`${logPrefix} 发送NotifyX通知 ${success ? '成功' : '失败'}`);
-    }
     if (config.ENABLED_NOTIFIERS.includes('telegram')) {
         const telegramContent = `*${title}*\n\n${commonContent}`;
         const success = await sendTelegramNotification(telegramContent, config);
@@ -6858,20 +6550,15 @@ async function sendNotificationToAllChannels(title, commonContent, config, logPr
         const success = await sendWebhookNotification(title, webhookContent, config, metadata);
         console.log(`${logPrefix} 发送Webhook通知 ${success ? '成功' : '失败'}`);
     }
-    if (config.ENABLED_NOTIFIERS.includes('wechatbot')) {
-        const wechatbotContent = commonContent.replace(/(\**|\*|##|#|`)/g, '');
-        const success = await sendWechatBotNotification(title, wechatbotContent, config);
-        console.log(`${logPrefix} 发送企业微信机器人通知 ${success ? '成功' : '失败'}`);
-    }
     if (config.ENABLED_NOTIFIERS.includes('email')) {
         const emailContent = commonContent.replace(/(\**|\*|##|#|`)/g, '');
         const success = await sendEmailNotification(title, emailContent, config);
         console.log(`${logPrefix} 发送邮件通知 ${success ? '成功' : '失败'}`);
     }
-    if (config.ENABLED_NOTIFIERS.includes('bark')) {
-        const barkContent = commonContent.replace(/(\**|\*|##|#|`)/g, '');
-        const success = await sendBarkNotification(title, barkContent, config);
-        console.log(`${logPrefix} 发送Bark通知 ${success ? '成功' : '失败'}`);
+    if (config.ENABLED_NOTIFIERS.includes('dingtalk')) {
+        const dingtalkContent = commonContent.replace(/(\*\*|\*|##|#|`)/g, '');
+        const success = await sendDingTalkNotification(title, dingtalkContent, config);
+        console.log(`${logPrefix} 发送钉钉通知 ${success ? '成功' : '失败'}`);
     }
 }
 
@@ -6904,72 +6591,42 @@ async function sendTelegramNotification(message, config) {
   }
 }
 
-async function sendNotifyXNotification(title, content, description, config) {
+async function sendDingTalkNotification(title, content, config) {
   try {
-    if (!config.NOTIFYX_API_KEY) {
-      console.error('[NotifyX] 通知未配置，缺少API Key');
+    if (!config.DINGTALK_ACCESS_TOKEN || !config.DINGTALK_SECRET) {
+      console.error('[钉钉通知] 通知未配置，缺少Token或Secret');
       return false;
     }
 
-    console.log('[NotifyX] 开始发送通知: ' + title);
+    const timestamp = Date.now().toString();
+    const secret = config.DINGTALK_SECRET;
+    const stringToSign = `${timestamp}\n${secret}`;
 
-    const url = 'https://www.notifyx.cn/api/v1/send/' + config.NOTIFYX_API_KEY;
+    const encoder = new TextEncoder();
+    const keyData = encoder.encode(secret);
+    const key = await crypto.subtle.importKey("raw", keyData, {name: "HMAC", hash: "SHA-256"}, false, ["sign"]);
+    const signatureBuffer = await crypto.subtle.sign("HMAC", key, encoder.encode(stringToSign));
+    const signatureBase64 = btoa(String.fromCharCode(...new Uint8Array(signatureBuffer)));
+    const sign = encodeURIComponent(signatureBase64);
+
+    const host = (config.DINGTALK_HOST || 'https://oapi.dingtalk.com').replace(/\/+$/, '');
+    const url = `${host}/robot/send?access_token=${config.DINGTALK_ACCESS_TOKEN}&timestamp=${timestamp}&sign=${sign}`;
+
     const response = await fetch(url, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
-        title: title,
-        content: content,
-        description: description || ''
+        msgtype: 'text',
+        text: { content: `【${title}】\n${content}` },
+        at: { isAtAll: false }
       })
     });
 
     const result = await response.json();
-    console.log('[NotifyX] 发送结果:', result);
-    return result.status === 'queued';
+    console.log('[钉钉通知] 发送结果:', result);
+    return result.errcode === 0;
   } catch (error) {
-    console.error('[NotifyX] 发送通知失败:', error);
-    return false;
-  }
-}
-
-async function sendBarkNotification(title, content, config) {
-  try {
-    if (!config.BARK_DEVICE_KEY) {
-      console.error('[Bark] 通知未配置，缺少设备Key');
-      return false;
-    }
-
-    console.log('[Bark] 开始发送通知到设备: ' + config.BARK_DEVICE_KEY);
-
-    const serverUrl = config.BARK_SERVER || 'https://api.day.app';
-    const url = serverUrl + '/push';
-    const payload = {
-      title: title,
-      body: content,
-      device_key: config.BARK_DEVICE_KEY
-    };
-
-    // 如果配置了保存推送，则添加isArchive参数
-    if (config.BARK_IS_ARCHIVE === 'true') {
-      payload.isArchive = 1;
-    }
-
-    const response = await fetch(url, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json; charset=utf-8'
-      },
-      body: JSON.stringify(payload)
-    });
-
-    const result = await response.json();
-    console.log('[Bark] 发送结果:', result);
-    
-    // Bark API返回code为200表示成功
-    return result.code === 200;
-  } catch (error) {
-    console.error('[Bark] 发送通知失败:', error);
+    console.error('[钉钉通知] 发送通知失败:', error);
     return false;
   }
 }
@@ -7058,11 +6715,7 @@ async function sendEmailNotification(title, content, config) {
 }
 
 async function sendNotification(title, content, description, config) {
-  if (config.NOTIFICATION_TYPE === 'notifyx') {
-    return await sendNotifyXNotification(title, content, description, config);
-  } else {
-    return await sendTelegramNotification(content, config);
-  }
+  return await sendTelegramNotification(content, config);
 }
 
 // 4. 修改定时任务 checkExpiringSubscriptions，支持农历周期自动续订和农历提醒
