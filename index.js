@@ -6287,10 +6287,7 @@ async function testSingleSubscriptionNotification(id, env) {
     const amountText = subscription.amount ? `\n金额: ¥${subscription.amount.toFixed(2)}/周期` : '';
 
     const commonContent = `**订阅详情**
-类型: ${subscription.customType || '其他'}${amountText}
-日历类型: ${calendarType}
 到期日期: ${formattedExpiryDate}${lunarExpiryText}
-自动续期: ${autoRenewText}
 备注: ${subscription.notes || '无'}
 发送时间: ${currentTime}
 当前时区: ${formatTimezoneDisplay(timezone)}`;
