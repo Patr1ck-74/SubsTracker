@@ -6507,12 +6507,12 @@ function formatNotificationContent(subscriptions, config) {
 
     // 构建格式化的通知内容
     const subscriptionContent = `${statusEmoji} **${sub.name}**
-类型: ${typeText} ${periodText}
-分类: ${categoryText}${amountText}
-日历类型: ${calendarType}
+//类型: ${typeText} ${periodText}
+//分类: ${categoryText}${amountText}
+//日历类型: ${calendarType}
 到期日期: ${formattedExpiryDate}${lunarExpiryText}
-自动续期: ${autoRenewText}
-${reminderText}
+//自动续期: ${autoRenewText}
+//${reminderText}
 到期状态: ${statusText}`;
 
     // 添加备注
