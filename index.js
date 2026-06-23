@@ -4224,8 +4224,8 @@ const configPage = `
               </div>
               <div>
                 <label for="emailTo" class="block text-sm font-medium text-gray-700">收件人邮箱</label>
-                <input type="email" id="emailTo" placeholder="user@example.com" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
-                <p class="mt-1 text-sm text-gray-500">接收通知邮件的邮箱地址</p>
+                <input type="text" id="emailTo" placeholder="user1@example.com,user2@example.com" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                <p class="mt-1 text-sm text-gray-500">接收通知邮件的邮箱地址，多个收件人用英文逗号分隔</p>
               </div>
             </div>
             <div class="flex justify-end">
@@ -6631,7 +6631,12 @@ async function sendEmailNotification(title, content, config) {
       return false;
     }
 
-    console.log('[邮件通知] 开始发送邮件到: ' + config.EMAIL_TO);
+    const recipients = config.EMAIL_TO.split(',').map(e => e.trim()).filter(e => e);
+    if (recipients.length === 0) {
+      console.error('[邮件通知] 没有有效的收件人地址');
+      return false;
+    }
+    console.log('[邮件通知] 开始发送邮件到: ' + recipients.join(', '));
 
     // 生成HTML邮件内容
     const htmlContent = `
@@ -6684,7 +6689,7 @@ async function sendEmailNotification(title, content, config) {
       },
       body: JSON.stringify({
         from: fromEmail,
-        to: config.EMAIL_TO,
+        to: recipients,
         subject: title,
         html: htmlContent,
         text: content // 纯文本备用
